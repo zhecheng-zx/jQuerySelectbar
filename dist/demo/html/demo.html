@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>selectbar</title>
-    <link rel="stylesheet" href="../vendor/bootstrap-3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../vendor/iconfont/iconfont.css">
+    <link rel="stylesheet" href="../../bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../iconfont/iconfont.css">
     <link rel="stylesheet" href="../css/selectbar.css">
 </head>
 <body>
@@ -17,17 +17,26 @@
             <br>
             <br>
             <br>
-            <select class="form-control" id="selectbar">
+            <select class="form-control" id="selectbar1">
+
+            </select><input type="button" onclick='alert($("#selectbar1").selectbar("getSelectVal"))' value="获取值">
+            <input type="button" onclick='$("#selectbar1").selectbar("setSelectVal",[1001,1002])' value="设置值">
+            <select class="form-control" id="selectbar2">
 
             </select>
+            <input type="button" onclick='alert($("#selectbar2").selectbar("getSelectVal"))' value="获取值">
+            <input type="button" onclick='$("#selectbar2").selectbar("setSelectVal",[2001])' value="设置值">
         </div>
     </form>
 </div>
-<script src="../vendor/jquery.min.js"></script>
+<script src="../../jquery.min.js"></script>
+<script src="../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../js/plugin.js"></script>
+<!--<script src="../js/selectbar.js"></script>-->
 <script src="../js/jquery.selectbar.js"></script>
 <script>
-    var options = {
-        title: '请选择经办人',
+    var options1 = {
+        title: '请选择经办人1',
         multiple: true,
         database: {
             department:[
@@ -80,9 +89,70 @@
                 }
             ]
         },
-        values: [1001,1002]
+        values: []
     };
-    $("#selectbar").selectbar(options);
+    $("#selectbar1").selectbar(options1);
+
+
+
+
+    var options2 = {
+        title: '请选择经办人2',
+        multiple: true,
+        database: {
+            department:[
+                {
+                    parentId:-1,
+                    id: 100,
+                    name: '情报处',
+                },
+                {
+                    parentId: 100,
+                    id: 1000,
+                    name: '情报一科',
+                },
+                {
+                    parentId: 100,
+                    id: 2000,
+                    name: '情报二科',
+                }
+            ],
+            employees:[
+                {
+                    parentId: 1000,
+                    id: 1000,
+                    name: '张三'
+                },
+                {
+                    parentId: 1000,
+                    id: 1002,
+                    name: '李四'
+                },
+                {
+                    parentId: 2000,
+                    id: 2001,
+                    name: '五卅中'
+                },
+                {
+                    parentId: 2000,
+                    id: 2002,
+                    name: '无悔'
+                },
+                {
+                    parentId: 2000,
+                    id: 2003,
+                    name: '康撒'
+                },
+                {
+                    parentId: 100,
+                    id: 1010,
+                    name: '张处长'
+                }
+            ]
+        },
+        values: []
+    };
+    $("#selectbar2").selectbar(options2);
 </script>
 </body>
 </html>
