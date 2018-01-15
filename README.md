@@ -20,7 +20,12 @@ jQuery的多级选择框插件
   设置给select赋值
     
     $("#selectbar1").selectbar('setSelectVal',[1001,1002]);
-    
+LOG:
+1、修复多个下拉框在同一个页面时出现串值的问题。  
+2、添加获取值的方法  
+3、添加设置值的方法（只支持初始化设置）  
+times:2018-01-15 15:33
+
 
 author: zx  
 email: zhangxin1120289542@163.com
