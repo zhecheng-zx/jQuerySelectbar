@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>selectbar</title>
+    <link rel="stylesheet" href="../vendor/bootstrap-3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../vendor/iconfont/iconfont.css" />
+    <link rel="stylesheet" href="../css/selectbar.css" />
+</head>
+<body>
+<div class="container">
+    <form action="" class="form-horizontal">
+        <div class="form-group">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <select class="form-control" id="selectbar">
+
+            </select>
+        </div>
+    </form>
+</div>
+<script src="../vendor/jquery.min.js"></script>
+<script src="../js/jquery.selectbar.js"></script>
+<script>
+    var options = {
+        title: '请选择经办人',
+        multiple: true,
+        database: {
+            department:[
+                {
+                    parentId:-1,
+                    id: 100,
+                    name: '情报处',
+                },
+                {
+                    parentId: 100,
+                    id: 1000,
+                    name: '情报一科',
+                },
+                {
+                    parentId: 100,
+                    id: 2000,
+                    name: '情报二科',
+                }
+            ],
+            employees:[
+                {
+                    parentId: 1000,
+                    id: 1001,
+                    name: '张三'
+                },
+                {
+                    parentId: 1000,
+                    id: 1002,
+                    name: '李四'
+                },
+                {
+                    parentId: 2000,
+                    id: 2001,
+                    name: '五卅中'
+                },
+                {
+                    parentId: 2000,
+                    id: 2002,
+                    name: '无悔'
+                },
+                {
+                    parentId: 2000,
+                    id: 2003,
+                    name: '康撒'
+                },
+                {
+                    parentId: 100,
+                    id: 1010,
+                    name: '张处长'
+                }
+            ]
+        },
+        values: [1001,1002]
+    };
+    $("#selectbar").selectbar(options);
+</script>
+</body>
+</html>
