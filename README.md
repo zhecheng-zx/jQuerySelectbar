@@ -11,4 +11,7 @@ jQuery的多级选择框插件
           employees: []   //人员  
         }  
         values:[]  //选中的值  
-      }
+      }
+获取selected选中的值 参数
+
+      getSelectVal(id)
