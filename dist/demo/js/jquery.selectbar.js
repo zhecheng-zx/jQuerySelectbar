@@ -341,4 +341,4 @@ function getSelectVal(id) {
         }
     }
     return val;
-}
+};
