@@ -169,20 +169,30 @@
             selected_item += '<span class="item-name" _id="'+ids+'">'+item_name+'</span>';
             selected_item += '<span class="iconfont icon-cha remove-item"></span>';
             selected_item += '</div></li>';
-            if(self.options.multiple){
-                selectbar.find('.selector-input-list-wrap .selected-list').append(selected_item);
-            }else{
-                selectbar.find('.selector-input-list-wrap .selected-list').empty().append(selected_item);
-            }
-            selectbar.find('.item-status input[value='+ids+']').prop('checked',true);
-            self.elem.find('option[value='+ids+']').attr('selected','selected');
+            var select_num_ele = selectbar.find('.selected-num .selected--num'),
+                select_num = parseInt(select_num_ele.text());
+
             var flag = false;
             flag = self.options.values.some(function (item) {
                 return item === ids;
             });
-            if(!flag){
+
+            if(self.options.multiple){
+                selectbar.find('.selector-input-list-wrap .selected-list').append(selected_item);
+                self.elem.find('option[value='+ids+']').attr('selected','selected');
+                select_num++;
+                if(!flag){
+                    self.options.values.push(ids);
+                }
+            }else{
+                selectbar.find('.selector-input-list-wrap .selected-list').empty().append(selected_item);
+                self.elem.find('option').removeAttr('selected');
+                self.elem.find('option[value='+ids+']').attr('selected','selected');
+                select_num = 1;
+                self.options.values = [];
                 self.options.values.push(ids);
             }
+            selectbar.find('.item-status input[value='+ids+']').prop('checked',true);
 
             selectbar.find(".selector-input-list-wrap").find('.search-clear').show().one('click',function () {
                 $(this).hide();
@@ -191,13 +201,6 @@
                     self.removeSelected(id);
                 });
             });
-            var select_num_ele = selectbar.find('.selected-num .selected--num'),
-                select_num = parseInt(select_num_ele.text());
-            if(self.options.multiple){
-                select_num++;
-            }else{
-                select_num = 1;
-            }
             select_num_ele.text(select_num);
         };
         self.removeSelected=function (id) {
@@ -312,7 +315,14 @@
                 result.push($(this).val());
             });
             return result;
-        }
+        };
+        self.getSelectName=function(){
+            var result = [];
+            $(self.elem).find('option[selected=selected]').each(function (index,item) {
+                result.push($(this).text());
+            });
+            return result;
+        };
         self.setSelectVal=function(opts){
             var selectValues = [];
             if(!(opts instanceof Array)){
@@ -330,6 +340,8 @@
             switch (method) {
                 case 'getSelectVal':
                     return self.getSelectVal();
+                case 'getSelectName':
+                    return self.getSelectName();
                 case 'setSelectVal':
                     return self.setSelectVal(options);
                 case 'destroy':
