@@ -268,3 +268,6 @@ ul,li{
 .tree-list .list .select-item .departments+.item-ell {
     padding-left: 4px;
 }
+.selector-input-list-wrap.form-control{
+    height:auto;
+}

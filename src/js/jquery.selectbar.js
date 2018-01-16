@@ -193,7 +193,11 @@
             });
             var select_num_ele = selectbar.find('.selected-num .selected--num'),
                 select_num = parseInt(select_num_ele.text());
-            select_num++;
+            if(self.options.multiple){
+                select_num++;
+            }else{
+                select_num = 1;
+            }
             select_num_ele.text(select_num);
         };
         self.removeSelected=function (id) {
@@ -317,6 +321,7 @@
                 selectValues=opts;
             }
             self.options.values=selectValues;
+            self.elem.parent().find('.selected-num .selected--num').text(0);
             self.initSelectSelected();
             return self;
         };
